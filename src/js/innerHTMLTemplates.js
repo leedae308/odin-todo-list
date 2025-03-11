@@ -1,42 +1,70 @@
 // innerHTMLTemplates.js
 
+import TaskLoader from "./displayTask"
+import DOMselector from "./universalDOMSelector";
+import LocalStorage from "./backEnd/localStorage";
+import arraySort from "./arraySorter";
+
+
 class innerHTMLTemplate {
-    constructor(taskPane) {
-        this.taskPane = taskPane;
+    constructor() {
+        this.taskPane = DOMselector.taskPane;
+        this.renderHome();
     }
 
     renderToday() {
-        this.taskPane.innerHTML = this.todayTemplate();
-    }
-    
-    renderProject(){
-        this.taskPane.innerHTML = this.projectTemplate();
+        this.taskPane.innerHTML = this.pageTitle("Today") +
+            this.addTaskTemplate() + this.addSortedTask();
+
     }
 
-    todayTemplate() {
-        return `<div class="page-title">Today</div>
-            <div class="project">
+    renderProject() {
+        this.taskPane.innerHTML = this.pageTitle("Add task") + this.addTaskTemplate();
+
+
+    }
+
+    renderHome() {
+        this.taskPane.innerHTML = this.pageTitle("Todo") + this.homeTemplate();
+
+    }
+
+    addSortedTask() {
+        const keys = Object.keys(arraySort.getCategorized());
+        const sortedArray = arraySort.getCategorized();
+        const resultArray = [];
+
+        for (let i = 0; i < keys.length; i++) {
+            resultArray.push(`<div class="project">
+                <div class="sub-title">${keys[i]}</div>`)
+            
+            const tasksHTML=sortedArray[keys[i]].map(task=>{
+                var loadTask = new TaskLoader(task);
+                return loadTask.getHTML();
+            }).join(' ');
+            resultArray.push(tasksHTML);
+        }
+
+        return resultArray.join(' ');
+
+    }
+
+    addTask() {
+        return LocalStorage.retrieve().map(task => {
+            var loadTask = new TaskLoader(task);
+            return loadTask.getHTML();
+        }
+        ).join('');
+    }
+
+    pageTitle(pageTitle) {
+        return `<div class="page-title">${pageTitle}</div>`
+    }
+    homeTemplate() {
+        return `<div class="project">
                 <div class="sub-title">My Projects</div>
                 <div class="task">
-                    <input type="checkbox" name="complete" id="complete">
-                    <div class="text">Do 30 minutes of yoga</div>
-                    <div class="time">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <title>repeat-variant</title>
-                            <path
-                                d="M6,5.75L10.25,10H7V16H13.5L15.5,18H7A2,2 0 0,1 5,16V10H1.75L6,5.75M18,18.25L13.75,14H17V8H10.5L8.5,6H17A2,2 0 0,1 19,8V14H22.25L18,18.25Z"
-                                fill="currentColor" />
-                        </svg>
-                        7:30 AM
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <title>alarm</title>
-                            <path
-                                d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,4M12.5,8H11V14L15.75,16.85L16.5,15.62L12.5,13.25V8M7.88,3.39L6.6,1.86L2,5.71L3.29,7.24L7.88,3.39M22,5.72L17.4,1.86L16.11,3.39L20.71,7.25L22,5.72Z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="task">
-                    <input type="checkbox" name="complete" id="complete">
+                    <input type="checkbox" name="complete" id="filled" filled>
                     <div class="text">Dentist appointment</div>
                     <div class="time">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -63,9 +91,8 @@ class innerHTMLTemplate {
                 </div>
             </div>`}
 
-    projectTemplate() {
-        return `<div class="page-title">Add Task</div>
-            <form action="post" id="task-creation">
+    addTaskTemplate() {
+        return `<form action="post" id="task-creation">
                 <input type="text" name="task-title" placeholder="Task Title">
                 <input type="text" name="task-description" placeholder="Description">
                 <div class="buttons">
@@ -116,4 +143,4 @@ class innerHTMLTemplate {
 
 }
 
-export default innerHTMLTemplate;
+export default new innerHTMLTemplate();

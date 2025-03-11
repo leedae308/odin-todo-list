@@ -9,17 +9,16 @@ class DisplayModule {
         this.init();
     }
     init() {
-        this.Template = DOMselector;
-        this.baseHtml = new HTML(this.Template.taskPane);
-        this.Template.taskPane.innerHTML = "";
+        this.Template = DOMselector; // universal DOM Selector
+        this.baseHtml = HTML; // HTML Template Loader for each pages
         this.attachEventListener();
     }
+
+
     attachEventListener() {
         this.underDevelopment("searchToolBtn", "inboxToolBtn", "upcomingToolBtn", "filterToolBtn");
-        // alert(this.baseHtml.renderToday);
         this.Template.todayToolBtn.addEventListener("click", this.baseHtml.renderToday.bind(this.baseHtml));
         this.Template.addTaskToolBtn.addEventListener("click", this.baseHtml.renderProject.bind(this.baseHtml));
-        // this.Template.todayToolBtn.addEventListener("click", ()=>alert());
     }
 
 
@@ -41,9 +40,3 @@ class DisplayModule {
 }
 
 export default new DisplayModule();
-
-
-
-// class ClearContent{
-
-// }
