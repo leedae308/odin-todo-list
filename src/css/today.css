@@ -1,0 +1,84 @@
+/* today.css */
+.task>.project {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project>.sub-title {
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+}
+
+.task>input[type="checkbox"] {
+    appearance: none;
+    border: 1px solid #6c6a68;
+    border: 50%;
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: relative;
+}
+
+.task>input[type="checkbox"]:checked {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+
+}
+
+
+.task>.time {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    color: green;
+
+    position: static;
+}
+
+.time>svg {
+    width: 1rem;
+}
+
+.task>.text {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.time>svg+svg {
+    margin-left: 0.6rem;
+}
+
+.task>.plus {
+    color: #dc4a44;
+    font-size: 2.5rem;
+    font-weight: 100;
+    margin-left: 0.3rem;
+}
+
+.task>.add-text {
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+.task>.add-text:focus {
+    color: rgba(0, 0, 0, 1);
+}

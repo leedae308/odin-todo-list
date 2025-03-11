@@ -1,0 +1,230 @@
+@import url('./today.css');
+@import url('./project.css');
+
+:root {
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    /* padding-top: 0.5rem; */
+}
+
+.todoist {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto 1fr;
+}
+
+.top-left-bar {
+    padding: 1rem 1.8rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    background-color: #fcfaf8;
+}
+
+.top-left-bar>img#profile {
+    width: 2.2rem;
+    border: 0.18rem solid #dc4a44;
+    border-radius: 50%;
+    z-index: 1;
+    margin-right: 0.8rem;
+    padding: 0.1rem;
+}
+
+.top-left-bar>img#downArrow {
+    width: 1.5rem;
+    transform: scaleX(1.2);
+    filter: invert(0.4);
+    margin-left: 0.5rem;
+}
+
+.top-left-bar>img#downArrow:hover {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.icon-holder {
+    margin-left: auto;
+}
+
+#right-icon {
+    width: 1.6rem;
+    filter: invert(0.4);
+    margin-right: 0.3rem;
+}
+
+.icon:hover {
+    filter: invert(0) brightness(0.8);
+    cursor: pointer;
+}
+
+.project-pane {
+    background-color: #fcfaf8;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.8rem;
+    padding-top: 1.5rem;
+}
+
+.addTask {
+    color: #dc4a44;
+    font-size: 1.3rem;
+    font-weight: 530;
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.addTask:hover {
+    text-decoration: underline;
+}
+
+#addTask {
+    width: 2.3rem;
+    margin-right: 1rem;
+}
+
+.toolbars {
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.toolbar {
+    font-size: 1.3rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.toolbar:hover {
+    color: #dc4a44;
+    filter: none;
+}
+
+.toolbar>img,
+.toolbar>svg {
+    padding-left: 0.2rem;
+    width: 1.8rem;
+    /* filter: invert(0.4); */
+
+}
+
+.toolbar#selected {
+    background-color: #fff0e6;
+    /* padding: 0.6rem; */
+    width: 95%;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0;
+    color: #dc4a44
+}
+
+.toolbar#selected>svg {
+    filter: none;
+    color: #dc4a44;
+}
+
+.myProjects {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ProjectTitle {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.4rem;
+    color: #6c6a68;
+    font-weight: 500
+}
+
+.ProjectTitle>#profile {
+    width: 2.3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+    margin-right: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.myProjects>.project {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.myProjects>.project:hover {
+    color: #dc4a44;
+}
+
+.myProjects>.project>svg {
+    width: 1.6rem;
+    color: #dc4a44;
+    padding: 0.5rem;
+}
+
+
+
+
+.top-right-bar {
+    display: flex;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1.2rem;
+    padding: 1rem;
+    align-items: center;
+    font-weight: bold;
+    padding-left: 2rem;
+}
+
+.top-right-bar>.view-button {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    right: 2rem;
+    color: #6c6a68;
+}
+
+.top-right-bar>.view-button>svg {
+    width: 2rem;
+    margin-right: 0.5rem;
+}
+
+
+
+/* TASK PANE */
+.task-pane {
+    Padding: 0rem 6rem;
+}
+
+.page-title {
+    font-size: 2.7rem;
+    font-weight: bold;
+}
+
+#complete {
+    text-decoration: line-through;
+    color: #6c6a68;
+}
