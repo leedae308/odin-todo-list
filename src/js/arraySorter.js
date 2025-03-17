@@ -15,6 +15,10 @@ class ArraySort {
             return acc;
         },{})
     }
+
+    getProjectList(){
+        return Object.keys(this.getCategorized());
+    }
     
 }
 

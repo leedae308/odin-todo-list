@@ -4,6 +4,8 @@ import TaskLoader from "./displayTask"
 import DOMselector from "./universalDOMSelector";
 import LocalStorage from "./backEnd/localStorage";
 import arraySort from "./arraySorter";
+import updateProject from "./displayProjectList";
+import CreateTask from "./createTask";
 
 
 class innerHTMLTemplate {
@@ -15,12 +17,20 @@ class innerHTMLTemplate {
     renderToday() {
         this.taskPane.innerHTML = this.pageTitle("Today") +
             this.addTaskTemplate() + this.addSortedTask();
+        const form = document.querySelector("#task-creation");
+        if (form) {
+            new CreateTask(form, LocalStorage);
+        }
 
     }
 
     renderProject() {
         this.taskPane.innerHTML = this.pageTitle("Add task") + this.addTaskTemplate();
 
+        const form = document.querySelector("#task-creation");
+        if (form) {
+            new CreateTask(form, LocalStorage);
+        }
 
     }
 
@@ -37,8 +47,8 @@ class innerHTMLTemplate {
         for (let i = 0; i < keys.length; i++) {
             resultArray.push(`<div class="project">
                 <div class="sub-title">${keys[i]}</div>`)
-            
-            const tasksHTML=sortedArray[keys[i]].map(task=>{
+
+            const tasksHTML = sortedArray[keys[i]].map(task => {
                 var loadTask = new TaskLoader(task);
                 return loadTask.getHTML();
             }).join(' ');
@@ -92,9 +102,9 @@ class innerHTMLTemplate {
             </div>`}
 
     addTaskTemplate() {
-        return `<form action="post" id="task-creation">
-                <input type="text" name="task-title" placeholder="Task Title">
-                <input type="text" name="task-description" placeholder="Description">
+        return `<form id="task-creation">
+                <input type="text" name="task_title" placeholder="Task Title">
+                <input type="text" name="task_description" placeholder="Description">
                 <div class="buttons">
                     <button id="task-duedate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path
@@ -128,7 +138,7 @@ class innerHTMLTemplate {
                             fill="currentColor" />
                     </svg>
                     <!-- <input list="projects"> -->
-                    <select id="projects">
+                    <select id="projects" name="drop_down">
                         <option value="Fitness" selected>Fitness</option>
                         <option value="Groceries">Groceries</option>
                         <option value="Appointments">Appointments</option>
@@ -140,6 +150,10 @@ class innerHTMLTemplate {
 
             </form>`
     }
+
+}
+
+class Update {
 
 }
 

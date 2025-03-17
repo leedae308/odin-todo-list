@@ -1,21 +1,18 @@
 class StoreLocal {
     constructor() {
-        this.tasks = [];
-        
+        const savedTasks = window.localStorage.getItem("myTasks");
+        this.tasks = savedTasks ? JSON.parse(savedTasks) : [];
     }
 
     store(task) {
+        this.tasks = this.retrieve(); // Always load the latest tasks
         this.tasks.push(task);
-        const taskString = JSON.stringify(this.tasks);
-        window.localStorage.setItem("myTasks", taskString);
+        window.localStorage.setItem("myTasks", JSON.stringify(this.tasks));
     }
 
     retrieve() {
         const taskString = window.localStorage.getItem('myTasks');
-        if(taskString){
-            return JSON.parse(taskString);
-        }
-        else return [];
+        return taskString ? JSON.parse(taskString) : [];
     }
 }
 

@@ -32,11 +32,6 @@ class DisplayModule {
     }
     alertUnderDevelopment = (e) => alert(`${(e.currentTarget.id).toUpperCase()} tool is under development`);
 
-
-
-
-
-
 }
 
 export default new DisplayModule();

@@ -170,17 +170,17 @@ body {
     margin-bottom: 0.6rem;
 }
 
-.myProjects>.project {
+.project-container>.project {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
 }
 
-.myProjects>.project:hover {
+.project-container>.project:hover {
     color: #dc4a44;
 }
 
-.myProjects>.project>svg {
+.project-container>.project>svg {
     width: 1.6rem;
     color: #dc4a44;
     padding: 0.5rem;
